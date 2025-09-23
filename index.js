@@ -1,9 +1,5 @@
 
-
-
-
 import express from "express";
-
 import session from "express-session";
 import router from "./routes/router.js";
 const app = express();
@@ -24,7 +20,6 @@ app.use(router)
 
 
 
-// register
 
 
 

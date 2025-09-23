@@ -1,7 +1,6 @@
 import { usercollection } from "../sevice/db.js";
 import bcrypt from "bcrypt";
 
-
 export const register=async(req,res)=>{
      const { username, password,email } = req.body;
     
@@ -19,7 +18,14 @@ export const register=async(req,res)=>{
 export const login=async(req,res)=>{
     const { password,email } = req.body;
     
+    
       const user = await usercollection.findOne({ email:email});
+      if(user.role==='admin'){
+
+
+        const userdetails=await usercollection.find().toArray()
+        return res.render('admin',{userdetails})
+      }
       req.session.username = user.name;
         const isMatch = await bcrypt.compare(password, user.password);
       if (!user) {

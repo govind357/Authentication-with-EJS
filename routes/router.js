@@ -14,7 +14,7 @@ router.post("/register", register);
 router.get("/login", (req, res) => {
   res.render("login");
 });
-
+// router.get('/admin',)
 router.post('/logout',logout)
 
 router.post("/login", login);

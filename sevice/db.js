@@ -5,11 +5,13 @@ const client = new MongoClient(url);
 
 
 export let usercollection;
-let db;
+  export let db;
  async function connectDB() {
 if(!db){  await client.connect();
   console.log("MongoDB connected");
    db = client.db("ecommerce");
   usercollection = db.collection("details");}
 }
+
+
  connectDB();
