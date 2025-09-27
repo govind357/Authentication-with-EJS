@@ -12,6 +12,7 @@
         <th>id </th>
         <th>name</th>
         <th>email</th>
+        <th>status</th>
         </tr>
        </thead>
     <% userdetails.forEach((user)=>{ %>
@@ -26,6 +27,13 @@
             <td>
                 <%= user.email%>
             </td>
+            <td>
+          <% if (user.status === "active") { %>
+              <button>Disable</button>
+          <% } else { %>
+              <button>Enable</button>
+          <% } %>
+        </td>
         </tr>
    <% })%>
           <tr>
@@ -34,5 +42,10 @@
         
         
     </table>
+
+
+     <form action="/logout" method="post">
+  <button type="submit">Logout</button>
+</form>
 </body>
 </html>

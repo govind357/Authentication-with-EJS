@@ -1,9 +1,10 @@
 import express from "express";
 const router=express.Router()
-import { register } from "../controllers/controller.js";
+import { register, sessionchecking } from "../controllers/controller.js";
 import { login } from "../controllers/controller.js";
 import { logout } from "../controllers/controller.js";
-
+import { homePage } from "../controllers/controller.js";
+import { userdetails } from "../controllers/controller.js";
 router.get("/register", (req, res) => {
   res.render("register",{message:null});
 });
@@ -14,9 +15,19 @@ router.post("/register", register);
 router.get("/login", (req, res) => {
   res.render("login");
 });
-// router.get('/admin',)
 router.post('/logout',logout)
+router.post("/login", login); 
 
-router.post("/login", login);
+router.use(sessionchecking)
+router.get('/admin',(req,res)=>{
+    return res.render('admin',{userdetails})
 
-export default router
+})
+
+// router.get('/admin',)
+router.get('/home',homePage)
+router.get('/about',(req,res)=>{
+res.send('helo')
+})
+
+export default router  
